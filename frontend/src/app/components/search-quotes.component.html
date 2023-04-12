@@ -1,0 +1,18 @@
+<p>Get Live Quotes!</p>
+
+<form [formGroup]="form" (ngSubmit)="process()">
+
+    <table>
+        <tr>
+            <td>Get your quotes here:</td>
+            <td><input type="text" formControlName="ticker" size="30" placeholder="Enter Ticker"></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><button type="submit">Search</button></td>
+        </tr>
+
+    </table>
+
+</form>

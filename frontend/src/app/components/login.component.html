@@ -1,0 +1,30 @@
+<p>login works!</p>
+
+
+<form [formGroup]="form" (ngSubmit)="login()">
+
+    <table>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" formControlName="email" size="30"></td>
+        </tr>
+
+
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" formControlName="password" size="30"></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><button type="submit">Login</button></td>
+        </tr>
+
+    </table>
+
+</form>
+
+<div>
+    <p>Create Acccount:</p>
+    <button type="button" [routerLink]="['/register']">Register</button>
+</div>

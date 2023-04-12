@@ -1,0 +1,20 @@
+<p>mainpage works!</p>
+
+
+
+<div class='calendar'>
+    <full-calendar [options]='calendarOptions' #calendar>
+    <ng-template #eventContent let-arg>
+        <!-- custom properties are held in extendedProps -->
+    
+           <!-- <p> {{arg.event.startStr | date:'shortTime' }} </p> -->
+           <b> {{ arg.event.extendedProps.pnl}} </b>
+           
+    </ng-template>
+    </full-calendar>
+</div>
+
+
+<!-- The "extendedProps" property is an object that 
+allows you to add custom properties to the event object, 
+which can then be accessed and used in various ways when rendering the events. -->
