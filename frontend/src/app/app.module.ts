@@ -17,12 +17,14 @@ import { JournalEntryComponent } from './components/journal-entry.component';
 import { JournalEntrySuccessComponent } from './components/journal-entry-success.component';
 import { RegisterComponent } from './components/register.component';
 import { MaterialModule } from './material.module';
+import { UploadedEntriesComponent } from './components/uploaded-entries.component';
 
 const appRoutes: Routes = [
   {path:'', component: LoginComponent},
   {path:'register', component: RegisterComponent},
-  {path:'entry', component: JournalEntryComponent},
-  {path:'journal/success', component: JournalEntrySuccessComponent},
+  {path:'entry/:day', component: JournalEntryComponent}, //To enter a journal entry
+  {path:'uploadedentries/:day/:id', component: UploadedEntriesComponent}, //To display all the entries
+  {path:'journal/success', component: JournalEntrySuccessComponent}, //not used
   {path:'mainpage', component: MainpageComponent},
   {path:'quotes', component: SearchQuotesComponent}, 
   {path:'quotes/:ticker', component: QuotesComponent},
@@ -41,7 +43,8 @@ const appRoutes: Routes = [
     SearchQuotesComponent,
     JournalEntryComponent,
     JournalEntrySuccessComponent,
-    RegisterComponent
+    RegisterComponent,
+    UploadedEntriesComponent
   ],
 
   imports: [

@@ -5,9 +5,7 @@
 <div class='calendar'>
     <full-calendar [options]='calendarOptions' #calendar>
     <ng-template #eventContent let-arg>
-        <!-- custom properties are held in extendedProps -->
-    
-           <!-- <p> {{arg.event.startStr | date:'shortTime' }} </p> -->
+        
            <b> {{ arg.event.extendedProps.pnl}} </b>
            
     </ng-template>

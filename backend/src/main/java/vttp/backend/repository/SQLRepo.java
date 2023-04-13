@@ -2,6 +2,7 @@ package vttp.backend.repository;
 
 import org.springframework.stereotype.Repository;
 
+import vttp.backend.model.Day;
 import vttp.backend.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 import static vttp.backend.Utilities.*;
@@ -69,6 +72,27 @@ public class SQLRepo {
         }
 
         return updatedPnl;
+    }
+
+    //Get the list of day object to fill the calendar
+    public Optional<List<Day>> findListOfDayByEmail (String email, String start, String end) {
+
+        SqlRowSet rs = jdbcTemplate.queryForRowSet(SQL_GET_DAY_BY_EMAIL, email, start, end);
+
+        if (!rs.next()) {
+            return Optional.empty();
+        }
+
+        List<Day> listOfDay = new LinkedList<>();
+        Day day = createDay(rs);
+        listOfDay.add(day);
+
+        while (rs.next()) {
+            Day newDay = createDay(rs);
+            listOfDay.add(newDay);
+        }
+        System.out.println(listOfDay.toString());
+        return Optional.of(listOfDay);
     }
 
 

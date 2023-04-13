@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.json.Json;
+import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 import vttp.backend.config.JWTService;
@@ -146,17 +147,7 @@ public class StockController {
         } catch (Exception e) {
             imageService.deleteImage(journal.getUuid());
             logger.info(">>> does not run insert");
-            // Date currentDate = new Date();
-            // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            // String formattedDate = dateFormat.format(currentDate);
-            // System.out.println("Formatted date: " + formattedDate);
     
-            // try {
-            //     Date parsedDate = dateFormat.parse(formattedDate);
-            //     System.out.println("Parsed date: " + parsedDate);
-            // } catch (Exception ex) {
-            //     e.printStackTrace();
-            // }
         }
 
         JsonObject results = Json.createObjectBuilder().add("day_id", day_id).build();
@@ -165,8 +156,35 @@ public class StockController {
         .status(HttpStatus.OK)
         .contentType(MediaType.APPLICATION_JSON)
         .body(results.toString());
+    }
 
+    //Get List of Day for the Calendar
+    @GetMapping(path="/getdays")
+    @ResponseBody
+    public ResponseEntity<String> getListOfDays (@RequestHeader HttpHeaders header, @RequestParam String startStr, @RequestParam String endStr) {
 
+        String value = header.getFirst("Authorization").substring(7);
+        String email = jwtService.extractUsername(value);
+        System.out.println(">>>> Authenticated email: " + email);
+
+        Optional<JsonArray> jsonArray = userService.findListOfDayByEmail(email, startStr, endStr);
+
+        if (jsonArray.isEmpty()) {
+
+            JsonObject results = Json.createObjectBuilder().add("error","no days").build();
+
+            return ResponseEntity
+            .status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(results.toString());
+        }
+
+        JsonArray array = jsonArray.get();
+
+        return ResponseEntity
+        .status(HttpStatus.OK)
+        .contentType(MediaType.APPLICATION_JSON)
+        .body(array.toString());
     }
 }
 

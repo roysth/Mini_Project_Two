@@ -19,7 +19,7 @@ public class SQLQueries {
 
     //Given the email (taken from jwt) and a period of time between XX date and YY date (to fill the calender), 
     //get the Day object (day_id, pnl, date) from DAYS to be formed as a List<Day> later
-    public static final String SQL_GET_DAY_BY_EMAIL = "SELECT DAY_ID, PNL, DAY FROM DAYS WHERE EMAIL=?";
+    public static final String SQL_GET_DAY_BY_EMAIL = "SELECT DAY_ID, PNL, DAY FROM DAYS WHERE EMAIL=? AND DAY BETWEEN ? AND ?";
 
     //Get the day_id using email and day in DAYS
     public static final String SQL_GET_DAY_ID_BY_EMAIL_AND_DAY = "SELECT DAY_ID FROM DAYS WHERE EMAIL=? AND DAY=?";

@@ -16,6 +16,7 @@ import jakarta.json.JsonNumber;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 import jakarta.json.JsonReader;
+import vttp.backend.model.Day;
 import vttp.backend.model.Journal;
 import vttp.backend.model.Quotes;
 import vttp.backend.model.Role;
@@ -147,7 +148,7 @@ public class Utilities {
         
     }
 
-    //Create the User object from SQL #Used in User
+    //Create the User object from SQL #Used in SQLRepo
     public static User createUser (SqlRowSet rs) {
         User user = new User();
         user.setName(rs.getString("name"));
@@ -156,6 +157,26 @@ public class Utilities {
         user.setRole(Role.USER);
 
         return user;
+    }
+
+    //Create the Day object from SQL #Used in SQLRepo
+    public static Day createDay (SqlRowSet rs) {
+        Day day = new Day();
+        day.setDay_id(rs.getString("day_id"));
+        day.setPnl(rs.getDouble("pnl"));
+        day.setDate(rs.getDate("day"));
+
+        return day;
+    }
+
+    //Convert Day object to Json #Used in UserService
+    public static JsonObject dayToJson (Day day) {
+        JsonObjectBuilder ob = Json.createObjectBuilder();
+        ob.add("day_id", day.getDay_id());
+        ob.add("pnl", day.getPnl());
+        ob.add("date", day.getDate().toString());
+
+        return ob.build();
     }
 
 

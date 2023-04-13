@@ -31,9 +31,10 @@ export interface Journal {
 }
 
 export interface Day {
-    journallist: Journal[]
+    
     day_id: string
     pnl: number
+    date: Date
 }
 
 export interface User {

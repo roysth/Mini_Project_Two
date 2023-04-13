@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { lastValueFrom } from "rxjs";
-import { Journal, Quotes } from "./stocks.model";
+import { Day, Journal, Quotes } from "./stocks.model";
 import { AuthenticationService } from "./services/authentication.service";
 
 @Injectable()
@@ -53,10 +53,21 @@ export class StocksRepository {
         
 
     }
+    //To get the list of Day object for the day_id
+    getDays(startStr: string, endStr: string): Promise<Day[]> {
+
+        const queryParams = new HttpParams()
+        .set('startStr', startStr)
+        .set('endStr', endStr)
+
+        return lastValueFrom(this.httpClient.get<Day[]>('/api/getdays', {headers: this.setHeaders(), params: queryParams}))
+    }
 
   
 
-
+    //Things to do:
+    //controller for getdays
+    //Other methods in mainpage
 
 
 
