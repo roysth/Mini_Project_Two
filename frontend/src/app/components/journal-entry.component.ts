@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Journal } from '../stocks.model';
 import { StocksRepository } from '../stocks.repository';
 
@@ -14,15 +14,30 @@ export class JournalEntryComponent implements OnInit {
 
   form!: FormGroup
   journal!: Journal
+  day_id!: string
+  day!: Date
   blob!: Blob
 
   @ViewChild('image')
 	image!: ElementRef
 
-  constructor(private fb: FormBuilder, private router: Router, private stocksRepo: StocksRepository) {}
+  constructor(private fb: FormBuilder, private router: Router, private stocksRepo: StocksRepository, 
+    private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.form = this.createForm();
+    //Get the day from the URL
+    const dayFromUrl = this.activatedRoute.snapshot.params['day']
+    
+
+    //Search the day from sql and get the day_id
+    this.stocksRepo.searchDay(dayFromUrl).then(
+      results => {
+        this.day_id = results['day_id']
+        console.log('day_id is: ', this.day_id)
+      }
+    )
+
   }
 
   process() {
@@ -38,7 +53,7 @@ export class JournalEntryComponent implements OnInit {
     //console.log('>>>> JOURNAL ', journal)
     console.log(typeof journal.entryPrice)
 
-    this.stocksRepo.postJournal(journal, this.blob)
+    this.stocksRepo.postJournal(journal, this.blob, this.day_id)
     .then(results => {
       console.log('>>> POSTED: ', results)
     })

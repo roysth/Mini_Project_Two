@@ -95,6 +95,20 @@ public class SQLRepo {
         return Optional.of(listOfDay);
     }
 
+    //Find and get the day_id by email and day
+    public Optional<String> findDayIdByEmailAndDay (String email, String day) {
+
+        SqlRowSet rs = jdbcTemplate.queryForRowSet(SQL_GET_DAY_ID_BY_EMAIL_AND_DAY, email, day);
+
+        if (!rs.next()) {
+            return Optional.empty();
+        }
+
+        String day_id = rs.getString("day_id");
+
+        return Optional.of(day_id);
+    }
+
 
 
 

@@ -21,8 +21,10 @@ public class SQLQueries {
     //get the Day object (day_id, pnl, date) from DAYS to be formed as a List<Day> later
     public static final String SQL_GET_DAY_BY_EMAIL = "SELECT DAY_ID, PNL, DAY FROM DAYS WHERE EMAIL=? AND DAY BETWEEN ? AND ?";
 
-    //Get the day_id using email and day in DAYS
+    //Get the day_id using email and day in DAYS.
+    //If day_id is present, send it to teh frontend and tie it to the journal entry. Else, create a new one when the journal is sent over 
     public static final String SQL_GET_DAY_ID_BY_EMAIL_AND_DAY = "SELECT DAY_ID FROM DAYS WHERE EMAIL=? AND DAY=?";
+
     
 }
 

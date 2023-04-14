@@ -113,7 +113,7 @@ public class StockController {
 
     }
 
-    //Uploading Journal into Mongo
+    //Uploading Journal into Mongo and SQL
     @PostMapping(path="/uploadjournal", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<String> postJournal (@RequestHeader HttpHeaders header, @RequestBody String payload, @RequestParam String day_id) {
@@ -125,19 +125,19 @@ public class StockController {
 
         String value = header.getFirst("Authorization").substring(7);
         String email = jwtService.extractUsername(value);
-        System.out.println(">>>> Authenticated email: " + email);
+        logger.info(">>>> Uploading Journal. Authenticated email: " + email);
 
         //Reads and creates the Json object
         JsonObject jsonObject = toJsonFromClient(payload);
 
-        logger.info(">>> JsonObject is: " + jsonObject.toString());
+        logger.info(">>> JsonObject from Journal is: " + jsonObject.toString());
 
         //Create the Journal object from json {IS THIS NECESSARY?}
         Journal journal = toJournalFromClient(jsonObject);
 
         //For testing
         Date date = journal.getEntryDate();
-        logger.info(">>> JsonObject is: " + date.toString());
+        logger.info(">>> Testing. Date entered in journal is: " + date.toString());
 
 
         //Insert into Mongo and SQL
@@ -165,7 +165,7 @@ public class StockController {
 
         String value = header.getFirst("Authorization").substring(7);
         String email = jwtService.extractUsername(value);
-        System.out.println(">>>> Authenticated email: " + email);
+        logger.info(">>>> Get List of Days. Authenticated email: " + email);
 
         Optional<JsonArray> jsonArray = userService.findListOfDayByEmail(email, startStr, endStr);
 
@@ -180,6 +180,48 @@ public class StockController {
         }
 
         JsonArray array = jsonArray.get();
+
+        return ResponseEntity
+        .status(HttpStatus.OK)
+        .contentType(MediaType.APPLICATION_JSON)
+        .body(array.toString());
+    }
+
+    //Find and get the day_id from Days schema in SQL
+    @GetMapping(path="/searchday")
+    @ResponseBody
+    public ResponseEntity<String> getDayId (@RequestHeader HttpHeaders header, @RequestParam String date) {
+
+        String value = header.getFirst("Authorization").substring(7);
+        String email = jwtService.extractUsername(value);
+        logger.info(">>>> Get day_id with email & day.Authenticated email: " + email);
+
+        Optional<String> dayIdOpt = userService.findDayIdByEmailAndDay(email, date);
+
+        String day_id = "";
+
+        if (!dayIdOpt.isEmpty()) {
+
+            day_id = dayIdOpt.get();
+        }
+        JsonObject results = Json.createObjectBuilder().add("day_id", day_id).build();
+
+        return ResponseEntity
+        .status(HttpStatus.OK)
+        .contentType(MediaType.APPLICATION_JSON)
+        .body(results.toString());
+    }
+
+    //Get JsonArray of Journal from Mongo
+    @GetMapping(path="/getjournal")
+    @ResponseBody
+    public ResponseEntity<String> getJsonArrayJournal (@RequestHeader HttpHeaders header, @RequestParam String day_id) {
+
+        String value = header.getFirst("Authorization").substring(7);
+        String email = jwtService.extractUsername(value);
+        logger.info(">>>> Get JasonArray Journal via day_id. Authen email: " + email);
+
+        JsonArray array = userService.getJsonArrayOfJournalByDayId(day_id);
 
         return ResponseEntity
         .status(HttpStatus.OK)

@@ -98,5 +98,18 @@ public class UserService {
 
         return Optional.of(array);
     }
+
+
+    //Find day_id by email and day
+    public Optional<String> findDayIdByEmailAndDay (String email, String day) {
+
+        return sqlRepo.findDayIdByEmailAndDay(email, day);
+    }
+
+    //Get JsonArray from Mongo
+    public JsonArray getJsonArrayOfJournalByDayId (String day_id) {
+
+        return mongoJournalRepo.getJsonArrayOfJournalByDayId(day_id);
+    }
     
 }

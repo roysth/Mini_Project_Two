@@ -129,7 +129,7 @@ public class Utilities {
     }
 
     //To get the Journal from Mongo #Used in MongoJournalRepo
-    public static Journal journal (Document doc) {
+    public static Journal getJournalFromMongo (Document doc) {
 
         Journal journal = new Journal();
         journal.setUuid(doc.getString("uuid"));
@@ -145,7 +145,28 @@ public class Utilities {
         journal.setImageUrl(doc.getString("imageUrl"));
         
         return journal;
-        
+    }
+
+    //Convert the Journal object to Json #Used in MongoJournalRepo
+    public static JsonObject journalToJson (Journal journal) {
+
+        JsonObjectBuilder ob = Json.createObjectBuilder();
+        ob.add("uuid", journal.getUuid());
+        ob.add("symbol", journal.getSymbol());
+        ob.add("position", journal.getPosition());
+        ob.add("tradeType", journal.getTradeType());
+        ob.add("entryPrice", journal.getEntryPrice());
+        ob.add("exitPrice", journal.getExitPrice());
+        ob.add("entryDate", journal.getEntryDate().toString());
+        ob.add("exitDate", journal.getExitDate().toString());
+        ob.add("pnl", journal.getPnl());
+        ob.add("comments", journal.getComments());
+        ob.add("imageUrl", journal.getImageUrl());
+
+
+        JsonObject results = ob.build();
+
+        return results;
     }
 
     //Create the User object from SQL #Used in SQLRepo

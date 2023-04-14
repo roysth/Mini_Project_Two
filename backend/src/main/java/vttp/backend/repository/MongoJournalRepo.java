@@ -5,6 +5,11 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
+
+import jakarta.json.Json;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonArrayBuilder;
+
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
@@ -12,6 +17,7 @@ import vttp.backend.model.Journal;
 
 import static vttp.backend.Utilities.*;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -50,21 +56,31 @@ public class MongoJournalRepo {
     }
 
 
-    //Get a Journal from Mongo
-    // public Optional<Journal> getJournal (String postId) {
+    //Get a Journal from Mongo using day_id
+    //*Since need to send to Frontend, just get in JsonArray instead of List<Journal>
+    public JsonArray getJsonArrayOfJournalByDayId (String day_id) {
 
-    //     logger.info(">>>Find Mongo using  : " + postId);
+        logger.info(">>>Find Journal in Mongo using  : " + day_id);
 
-    //     Criteria criteria = Criteria.where("postId").is(postId);
+        Criteria criteria = Criteria.where("day_id").is(day_id);
 
-    //     Query query = Query.query(criteria);
+        Query query = Query.query(criteria);
 
-    //     Document doc = mongoTemplate.findOne(query, Document.class, C_JOURNAL);
+        //List<Document> doc = mongoTemplate.find(query, Document.class, C_JOURNAL);
 
-    //     logger.info(">>>Results from Mongo: " + doc.toString());
+        List<Journal> journalList = mongoTemplate.find(query, Document.class, C_JOURNAL).stream().map(doc -> getJournalFromMongo(doc)).toList();
 
-    //     return Optional.of(createPost(doc));
-    // }
+        JsonArrayBuilder ab = Json.createArrayBuilder();
+        for (Journal j: journalList) {
+            ab.add(journalToJson(j));
+        }
+
+        JsonArray results = ab.build();
+
+        logger.info(">>>Results from Mongo: " + results.toString());
+
+        return results;
+    }
 
  
 

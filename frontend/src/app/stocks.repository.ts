@@ -26,7 +26,7 @@ export class StocksRepository {
         return lastValueFrom(this.httpClient.get<Quotes>(`/api/quotes/${ticker}`, {headers: this.setHeaders()}))
     }
 
-    postJournal (journal: Journal, image:Blob): Promise<any> {
+    postJournal (journal: Journal, image:Blob, day_id: string): Promise<any> {
 
         //Uses Response Body
         //payload is used in Controller
@@ -35,9 +35,13 @@ export class StocksRepository {
         }
 
 
-        //For testing
-        const queryParams =  new HttpParams()
-        .set('day_id', 'eae9d027')
+        // **** For testing !!!!!!!!!!!!!!!!!!!
+        // const queryParams =  new HttpParams()
+        // .set('day_id', 'eae9d027')
+
+        // **** For Real !!!!!!!!!!!!!!!!!!!
+        const queryParams = new HttpParams()
+            .set('day_id', day_id)
         
         const formData = new FormData()
         formData.set('image', image)
@@ -63,6 +67,24 @@ export class StocksRepository {
         return lastValueFrom(this.httpClient.get<Day[]>('/api/getdays', {headers: this.setHeaders(), params: queryParams}))
     }
 
+    //Search the day_id in SQL in the Days schema before submitting a journal entry. 
+    //If the day_id is present, retrieve it. If no, submit journal without day_id and a day_id will be created
+    searchDay(day:string): Promise<any> {
+
+        const queryParams = new HttpParams()
+        .set('date', day)
+
+        return lastValueFrom(this.httpClient.get('/api/searchday', {headers: this.setHeaders(), params: queryParams}))
+
+    }
+
+    getJournalEntriesByDayId (day_id: string): Promise<any> {
+
+        const queryParams = new HttpParams()
+        .set('day_id', day_id)
+
+        return lastValueFrom(this.httpClient.get<Journal[]>('/api/getjournal', {headers: this.setHeaders(), params: queryParams}))
+    }
   
 
     //Things to do:
