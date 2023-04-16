@@ -21,12 +21,31 @@ export class UploadedEntriesComponent implements OnInit {
   ngOnInit(): void {
     this.day_id = this.activatedRoute.snapshot.params['id']
     this.day_string = this.activatedRoute.snapshot.params['day']
+    this.getListOfJournal()
+
   }
 
   getListOfJournal() {
     this.stocksRepository.getJournalEntriesByDayId(this.day_id).then(results => {
       this.journalList = results as Journal[]
-    }).then()
+    }).then( () => {
+      //This is needed because if the last Journal entry is deleted from Mongo,
+      //the Day entry from SQL should also be deleted. 
+      //This is for simplier entries in future. Neater also
+      if (this.journalList.length == 0) {
+        this.stocksRepository.deleteDay(this.day_id)
+        this.router.navigate(['/mainpage'])
+      }
+    })
+  }
+
+  deleteJournal(j: Journal) {
+
+    this.stocksRepository.deleteJournal(j.uuid, j.pnl, this.day_id)
+      .then( () => this.getListOfJournal()
+    ).catch(error => {
+      console.log('>>>> ERROR: ', error)
+    })
 
   }
   

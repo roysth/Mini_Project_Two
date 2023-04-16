@@ -62,3 +62,13 @@ public class User implements UserDetails {
 
     
 }
+
+/*
+ * IDEA OF PROJECT:
+ * 
+ * User is created in SQL Users. Primary Key: email
+ * Day is created in SQL Days. Primary Key: day_id. Foreign key: email
+ * Journal is created in Mongo. Each entry has day_id for reference
+ * 
+ * 
+ */

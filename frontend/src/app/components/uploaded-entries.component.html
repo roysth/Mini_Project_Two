@@ -3,33 +3,52 @@
 
 
 <div class="card-container tile-content">
-    <div *ngFor="let meal of meal_list">
+ 
+    <div *ngFor="let j of journalList">
         <mat-card class="mb meal-card tile-margin">
+
             <mat-card-header class="space-apart">
-                <mat-card-title>{{meal.category | titlecase}}</mat-card-title>
-                <mat-card-subtitle> {{meal.meal_id}} </mat-card-subtitle>
-                <button matSuffix mat-icon-button aria-label="Delete" type="button" (click)="deleteMeal(meal)">
+                <mat-card-title>Symbol: {{j.symbol | uppercase}}</mat-card-title>
+                <mat-card-subtitle> {{j.uuid}} </mat-card-subtitle>
+                <button matSuffix mat-icon-button aria-label="Delete" type="button" (click)="deleteJournal(j)">
                     <mat-icon>delete_outline</mat-icon>
                 </button>
             </mat-card-header>
-            <img mat-card-image [src]="meal.imageurl" class="card-image" *ngIf="meal.imageurl">
-            <div class="flex-tile">
-                <div *ngFor="let f of meal.foodlist, let i=index" >
-                    <mat-card-content>
-                    <div class="food-name">{{f.name | titlecase}}</div>
-                    <mat-divider></mat-divider>
-                        Calories: {{f.calories}} kcal
-                    <mat-divider></mat-divider>
-                        Protein: {{f.protein}} g
-                    <mat-divider></mat-divider>
-                        Fat: {{f.fat}} g
-                    <mat-divider></mat-divider>
-                        Carbs: {{f.carbohydrates}} g
-                    <mat-divider></mat-divider>
-                        Weight: {{f.weight}} g
-                    </mat-card-content>
-                </div>
-            </div>
+
+
+            <mat-divider></mat-divider>
+            Quantity: {{j.quantity}} 
+            <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
+            Position: {{j.position}} 
+            <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
+            Trade Type: {{j.tradeType}} 
+            <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
+            Entry Price: USD {{j.entryPrice}} 
+            <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
+            Exit Price: USD {{j.exitPrice}} 
+            <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
+            Entry Date: {{j.entryDate}} 
+            <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
+            Exit Date: {{j.exitDate}} 
+            <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
+            PnL: USD {{j.pnl}} 
+            <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
+            Comments: {{j.comments}} 
+            <mat-divider></mat-divider>
+            <img mat-card-image class="card-image" [src]="j.imageUrl" *ngIf="j.imageUrl">
+
+
+
+        
         </mat-card>
     </div>
 </div>
+

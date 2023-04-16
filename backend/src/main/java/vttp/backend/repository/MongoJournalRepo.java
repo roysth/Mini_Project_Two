@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.mongodb.client.result.DeleteResult;
+
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
@@ -82,7 +84,17 @@ public class MongoJournalRepo {
         return results;
     }
 
- 
+    //Delete the Journal entry
+    public boolean deleteJournal (String uuid) {
+
+        Criteria criteria = Criteria.where("uuid").is(uuid);
+
+        Query query = Query.query(criteria);
+
+        DeleteResult deleteResult = mongoTemplate.remove(query, Document.class, C_JOURNAL);
+
+        return deleteResult.getDeletedCount() > 0;
+    }
 
 
 

@@ -93,7 +93,11 @@ export class MainpageComponent implements OnInit {
     //Returns the additional properties associated with the event
     console.info(">>> ClickEvent - Additional Props:", clickInfo.event.extendedProps)
     this.router.navigate(['/uploadedentries', clickInfo.event.startStr, clickInfo.event.extendedProps['day_id']])
-}
+  }
+
+  logout() {
+    this.router.navigate(['/'])
+  }
 
   
 

@@ -74,6 +74,13 @@ public class SQLRepo {
         return updatedPnl;
     }
 
+    //Update the pnl when one journal is DELETED
+    public void updatePnlByRemovingDeletedJournal (double pnl, String day_id) {
+
+        jdbcTemplate.update(SQL_UPDATE_PNL_WHEN_JOURNAL_IS_DELETED, pnl, day_id);
+
+    }
+
     //Get the list of day object to fill the calendar
     public Optional<List<Day>> findListOfDayByEmail (String email, String start, String end) {
 
@@ -107,6 +114,12 @@ public class SQLRepo {
         String day_id = rs.getString("day_id");
 
         return Optional.of(day_id);
+    }
+
+    //Delete Day entry from Days
+    public void deleteDay (String day_id) {
+
+        jdbcTemplate.update(SQL_DELETE_DAY_ENTRY, day_id);
     }
 
 

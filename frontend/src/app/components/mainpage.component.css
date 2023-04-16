@@ -6,3 +6,16 @@
     font-size: .9em;
     
 }
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.logout-button {
+    display: flex;
+    align-items: center;
+  }
+  
+.logout-button .icon {
+    margin-right: 8px;
+  }

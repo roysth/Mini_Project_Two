@@ -24,6 +24,13 @@ public class SQLQueries {
     //Get the day_id using email and day in DAYS.
     //If day_id is present, send it to teh frontend and tie it to the journal entry. Else, create a new one when the journal is sent over 
     public static final String SQL_GET_DAY_ID_BY_EMAIL_AND_DAY = "SELECT DAY_ID FROM DAYS WHERE EMAIL=? AND DAY=?";
+ 
+    //Upate the pnl when a Journal entry is DELETED in DAYS
+    public static final String SQL_UPDATE_PNL_WHEN_JOURNAL_IS_DELETED = "UPDATE DAYS SET PNL = PNL-? WHERE DAY_ID=?";
+
+    //Delete Day entry from Days
+    public static final String SQL_DELETE_DAY_ENTRY = "DELETE FROM DAYS WHERE DAY_ID=?";
+
 
     
 }

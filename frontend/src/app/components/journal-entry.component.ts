@@ -77,7 +77,7 @@ export class JournalEntryComponent implements OnInit {
       entryPrice: this.fb.control<number>(0, Validators.required),
       exitPrice: this.fb.control<number>(0),
       entryDate: this.fb.control<Date>(new Date, Validators.required),
-      exitDate: this.fb.control<Date>(new Date),
+      exitDate: this.fb.control<Date>(new Date, Validators.required),
       pnl: this.fb.control<number>(0, Validators.required),
       comments: this.fb.control<string>(''),
       image: this.fb.control('', Validators.required)

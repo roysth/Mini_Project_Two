@@ -85,7 +85,27 @@ export class StocksRepository {
 
         return lastValueFrom(this.httpClient.get<Journal[]>('/api/getjournal', {headers: this.setHeaders(), params: queryParams}))
     }
-  
+
+
+    //Delete the Day entry in SQL. This is used when deleting the last Journal entry in Mongo
+    deleteDay (day_id: string) {
+
+        const queryParams = new HttpParams()
+        .set('day_id', day_id)
+
+        return lastValueFrom(this.httpClient.delete('/api/deleteday', {headers: this.setHeaders(), params: queryParams}))
+    }
+
+    deleteJournal (uuid: string, pnl: number, day_id: string) {
+
+        const queryParams= new HttpParams()
+        .set('uuid', uuid)
+        .set('pnl', pnl)
+        .set('day_id',day_id)
+
+        return lastValueFrom(this.httpClient.delete('/api/deletejournal', {headers: this.setHeaders(), params: queryParams}))
+    }
+   
 
     //Things to do:
     //controller for getdays

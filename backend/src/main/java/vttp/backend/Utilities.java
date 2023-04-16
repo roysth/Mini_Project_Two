@@ -116,7 +116,7 @@ public class Utilities {
             e.printStackTrace();
         }
         try {
-            journal.setEntryDate(sdf.parse(json.getString("exitDate")));
+            journal.setExitDate(sdf.parse(json.getString("exitDate")));
         } catch (ParseException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

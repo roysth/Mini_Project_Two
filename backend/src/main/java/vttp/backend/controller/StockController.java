@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -132,7 +133,7 @@ public class StockController {
 
         logger.info(">>> JsonObject from Journal is: " + jsonObject.toString());
 
-        //Create the Journal object from json {IS THIS NECESSARY?}
+        //Create the Journal object from json 
         Journal journal = toJournalFromClient(jsonObject);
 
         //For testing
@@ -228,6 +229,48 @@ public class StockController {
         .contentType(MediaType.APPLICATION_JSON)
         .body(array.toString());
     }
+
+    //Delete Day entry from Days SQL
+    @DeleteMapping(path="/deleteday")
+    @ResponseBody
+    public ResponseEntity<String> deleteDay (@RequestHeader HttpHeaders header, @RequestParam String day_id) {
+
+        String value = header.getFirst("Authorization").substring(7);
+        String email = jwtService.extractUsername(value);
+        logger.info(">>>> Deleting Day from Days SQL. Authen email: " + email);
+
+        userService.deleteDay(day_id);
+
+        JsonObject results = Json.createObjectBuilder().add("day_deleted", day_id).build();
+
+        return ResponseEntity
+        .status(HttpStatus.OK)
+        .contentType(MediaType.APPLICATION_JSON)
+        .body(results.toString());
+    }  
+    
+    @DeleteMapping(path="/deletejournal")
+    @ResponseBody
+    public ResponseEntity<String> deleteJournal (@RequestHeader HttpHeaders header, @RequestParam String uuid, 
+    @RequestParam Double pnl, @RequestParam String day_id) {
+
+        String value = header.getFirst("Authorization").substring(7);
+        String email = jwtService.extractUsername(value);
+        logger.info(">>>> Deleting Journal from Mongo. Authen email: " + email);
+
+        userService.deleteJournal(uuid, pnl, day_id);
+
+        JsonObject results = Json.createObjectBuilder().add("journal_deleted", uuid).build();
+
+        return ResponseEntity
+        .status(HttpStatus.OK)
+        .contentType(MediaType.APPLICATION_JSON)
+        .body(results.toString());
+        
+
+    }
+
+
 }
 
 

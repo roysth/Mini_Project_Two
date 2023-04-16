@@ -38,6 +38,9 @@ public class UserService {
     @Autowired
     private MongoJournalRepo mongoJournalRepo;
 
+    @Autowired
+    private ImageService imageService;
+
     private static final Logger logger = LoggerFactory.getLogger(SQLRepo.class);
 
     //Find user by email in SQL
@@ -56,16 +59,16 @@ public class UserService {
     @Transactional
     public void insertJournal (Journal journal, String day_id, String email) throws Exception{
 
-        Date currentDate = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String formattedDate = dateFormat.format(currentDate);
-        System.out.println("Formatted date: " + formattedDate);
-        Date parsedDate = dateFormat.parse(formattedDate);
+        // Date currentDate = new Date();
+        // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        // String formattedDate = dateFormat.format(currentDate);
+        // System.out.println("Formatted date: " + formattedDate);
+        // Date parsedDate = dateFormat.parse(formattedDate);
 
         //Create the day_id to reference the daily trades by an user
         if (day_id.isEmpty()) {
             day_id = UUID.randomUUID().toString().substring(0, 8);
-            sqlRepo.registerDay(day_id, email, journal.getPnl(), parsedDate);
+            sqlRepo.registerDay(day_id, email, journal.getPnl(), journal.getExitDate());
 
             logger.info(">>> day_id inserted: " + day_id);
         } else {
@@ -106,10 +109,33 @@ public class UserService {
         return sqlRepo.findDayIdByEmailAndDay(email, day);
     }
 
-    //Get JsonArray from Mongo
+    //Get Journal JsonArray from Mongo
     public JsonArray getJsonArrayOfJournalByDayId (String day_id) {
 
         return mongoJournalRepo.getJsonArrayOfJournalByDayId(day_id);
     }
+
+    //Delete a Journal entry - Delete from Mongo + remove the pnl from SQL Days + remove the image from S3
+    @Transactional
+    public void deleteJournal (String uuid, double pnl, String day_id) {
+
+        imageService.deleteImage(uuid);
+
+        mongoJournalRepo.deleteJournal(uuid);
+
+        sqlRepo.updatePnlByRemovingDeletedJournal(pnl, day_id);
+
+        logger.info(">>>> Image and Journal deleted from S3 and Mongo respectively. PNL updated.");
+    }
+
+    public void deleteDay (String day_id) {
+
+        sqlRepo.deleteDay(day_id);
+
+        logger.info(">>> Day entry deleted from Days SQL.");
+    }
+
+   
+
     
 }

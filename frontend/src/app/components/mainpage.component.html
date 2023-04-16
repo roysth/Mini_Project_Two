@@ -1,5 +1,42 @@
 <p>Only enter the entry after you have closed all your position </p>
 
+<mat-toolbar color="primary" class="header">
+    <mat-toolbar-row class="padding-3" >
+        <!-- <button mat-icon-button type="button" (click)="back()">
+            <div class="icon">
+                <mat-icon>arrow_back</mat-icon>
+            </div>
+        </button> -->
+
+        <span>Calorie Journal</span>
+        <!-- <span class="spacer"></span> -->
+        <!-- <span>{{ day | date :'mediumDate'}}</span> -->
+        <!-- <span class="spacer"></span> -->
+        <!-- <button mat-icon-button type="button" (click)="logout()">
+            
+                
+                <mat-icon>logout</mat-icon>
+                Logout
+                
+            
+        </button> -->
+
+
+        <button mat-button color="warn" (click)="logout()" class="logout-button">
+            <div class="icon">
+              <mat-icon>logout</mat-icon>
+            </div>
+            <div class="text">
+              Logout
+            </div>
+        </button>
+
+      
+
+
+    </mat-toolbar-row>
+</mat-toolbar>
+
 
 
 <div class='calendar'>
