@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StocksRepository } from '../stocks.repository';
 import { Quotes } from '../stocks.model';
 
@@ -14,7 +14,8 @@ export class QuotesComponent implements OnInit {
   ticker!: string
   quotes!: Quotes
 
-  constructor(private activatedRoute: ActivatedRoute, private stocksRepo: StocksRepository) {}
+  constructor(private activatedRoute: ActivatedRoute, private stocksRepo: StocksRepository,
+    private router: Router) {}
 
 
   ngOnInit(): void {
@@ -32,5 +33,18 @@ export class QuotesComponent implements OnInit {
         console.log('>>>> ERROR: ', error)
       })
   }
+
+  logout() {
+    this.router.navigate(['/'])
+  }
+
+  getQuotes() {
+    this.router.navigate(['/quotes'])
+  }
+
+  mainpage() {
+    this.router.navigate(['/mainpage'])
+  }
+
 
 }

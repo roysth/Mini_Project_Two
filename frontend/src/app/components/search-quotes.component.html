@@ -1,5 +1,15 @@
-<p>Get Live Quotes!</p>
+<!-- <p>Get Live Quotes!</p> -->
+<mat-toolbar >
+    <span>My Trading Journal </span>
+    <span class="spacer"></span>
+    <button mat-button type="button" (click)="mainpage()">Home</button>
+    <button mat-button type="button" (click)="getQuotes()">Quotes</button>
+    <button mat-button type="button" (click)="logout()">Logout</button>
+</mat-toolbar>
+<!-- <br>
+<br> -->
 
+<!-- 
 <form [formGroup]="form" (ngSubmit)="process()">
 
     <table>
@@ -10,9 +20,35 @@
 
         <tr>
             <td></td>
-            <td><button type="submit">Search</button></td>
+            <td><button mat-raised-button color="primary" type="submit">Search</button></td>
         </tr>
 
     </table>
 
-</form>
+</form> -->
+
+<div class="container">
+    
+    <div>
+    <mat-card-header>
+        <mat-card-title>Get the latests stock prices here!</mat-card-title>
+    </mat-card-header>
+    </div>  
+    <br>
+    <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="process()">
+        <mat-form-field>
+        <input type="text" matInput placeholder="Enter Ticker" formControlName="ticker">
+        </mat-form-field>
+
+
+        <div>
+        <button mat-raised-button color="primary" type="submit">Search</button>
+        </div>
+        
+    </form>
+    </mat-card-content>
+  
+  
+ 
+</div>

@@ -68,7 +68,7 @@ public class StockController {
     @ResponseBody
     public ResponseEntity<String> getQuote(@PathVariable String ticker) {
         System.out.println(ticker);
-        Optional<Quotes> quotes = stocksService.quotes(ticker);
+        Optional<Quotes> quotes = stocksService.quotes(ticker.toUpperCase());
 
         JsonObject results = quotesToJson(quotes.get());
 

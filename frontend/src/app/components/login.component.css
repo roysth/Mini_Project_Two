@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+  
+.card {
+    max-width: 400px;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+  
+.register {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    background-color: #FFD700; /* This is the hex color for light blue */
+    font-weight: bold;
+    text-align: center;
+    
+}

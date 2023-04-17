@@ -48,6 +48,18 @@ export class UploadedEntriesComponent implements OnInit {
     })
 
   }
+
+  logout() {
+    this.router.navigate(['/'])
+  }
+
+  getQuotes() {
+    this.router.navigate(['/quotes'])
+  }
+
+  mainpage() {
+    this.router.navigate(['/mainpage'])
+  }
   
 
 }

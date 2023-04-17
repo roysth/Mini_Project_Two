@@ -1,18 +1,26 @@
-<p>Quotes:</p>
+<mat-toolbar >
+    <span>My Trading Journal </span>
+    <span class="spacer"></span>
+    <button mat-button type="button" (click)="mainpage()">Home</button>
+    <button mat-button type="button" (click)="getQuotes()">Quotes</button>
+    <button mat-button type="button" (click)="logout()">Logout</button>
+</mat-toolbar>
+<br>
+<br>
 
 <div>
 
     <h2>Quotes for: {{quotes.symbol}}</h2>
 
-    <p> Last Price: {{quotes.lastPrice}}</p>
-    <p> Open Price: {{quotes.openPrice}}</p>
-    <p> Close Price: {{quotes.closePrice}}</p>
-    <p> High Price: {{quotes.highPrice}}</p>
-    <p> Low Price: {{quotes.lowPrice}}</p>
-    <p> Net Change: {{quotes.netChange}}</p>
-    <p> Total Volume: {{quotes.totalVolume}}</p>
-    <p> 52 Week High: {{quotes.FiftyTwoWkHigh}}</p>
-    <p> 52 Week Low: {{quotes.FiftyTwoWkLow}}</p>
+    <p> Last Price: {{"$" +quotes.lastPrice.toFixed(2)}}</p>
+    <p> Open Price: {{"$" +quotes.openPrice.toFixed(2)}}</p>
+    <p> Close Price: {{"$" +quotes.closePrice.toFixed(2)}}</p>
+    <p> High Price: {{"$" +quotes.highPrice.toFixed(2)}}</p>
+    <p> Low Price: {{"$" +quotes.lowPrice.toFixed(2)}}</p>
+    <p> Net Change: {{"$" +quotes.netChange.toFixed(2)}}</p>
+    <p> Total Volume: {{quotes.totalVolume.toLocaleString()}}</p>
+    <p> 52 Week High: {{"$" +quotes.FiftyTwoWkHigh.toFixed(2)}}</p>
+    <p> 52 Week Low: {{"$" +quotes.FiftyTwoWkLow.toFixed(2)}}</p>
 
 
 </div>

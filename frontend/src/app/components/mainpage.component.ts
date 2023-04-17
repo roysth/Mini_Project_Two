@@ -99,6 +99,14 @@ export class MainpageComponent implements OnInit {
     this.router.navigate(['/'])
   }
 
+  getQuotes() {
+    this.router.navigate(['/quotes'])
+  }
+
+  mainpage() {
+    this.router.navigate(['/mainpage'])
+  }
+
   
 
 
