@@ -60,7 +60,7 @@ export class MainpageComponent implements OnInit {
         if (days[0] != null) days.forEach( day => {
           var colorCode = "#808080" //Grey
           if (Number(day.pnl) > 0) colorCode = "#3fb541" //Green
-          if (Number(day.pnl) < 0) colorCode = "#b53f4d" //Red
+          if (Number(day.pnl) < 0) colorCode = "#DD1F13" //Red
 
           events.push({
             day_id: day.day_id,

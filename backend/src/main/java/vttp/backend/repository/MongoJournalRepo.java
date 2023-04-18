@@ -41,6 +41,7 @@ public class MongoJournalRepo {
         Document doc = new Document();
         doc.put("uuid", journal.getUuid());
         doc.put("symbol", journal.getSymbol());
+        doc.put("quantity", journal.getQuantity());
         doc.put("position", journal.getPosition());
         doc.put("tradeType", journal.getTradeType());
         doc.put("entryPrice", journal.getEntryPrice());

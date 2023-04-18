@@ -19,7 +19,7 @@ flex: 1 1 auto;
 button {
 font-size: 18px;
 font-weight: 500;
-color: #ffffff;
+color: #800000;
 margin-left: 8px;
 margin-right: 8px;
 text-transform: uppercase;
@@ -27,4 +27,50 @@ text-transform: uppercase;
 
 button:hover {
 background-color: rgba(255, 255, 255, 0.1);
+}
+
+.card-image{
+    height: 50svw;
+    width: auto;
+    object-fit: cover;
+}
+
+.spacer{
+    flex: 1 1 auto;
+}
+
+.mb{
+    margin-bottom: 1em;
+}
+
+.card-container{
+    box-sizing: border-box;
+    flex-shrink: 1;
+    flex-basis: auto;
+    margin: 3em
+}
+
+
+@media only screen and (min-width: 600px){
+
+    .journal-card{
+        width: 500px;
+    }
+
+    .card-image{
+        height: 300px;
+        width: 500px;
+        object-fit: cover;
+    }
+    
+    .tile-content{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+    }
+
+    .tile-margin{
+        margin-right: 2em;
+    }
+
 }

@@ -13,9 +13,9 @@
 <div class='calendar'>
     <full-calendar [options]='calendarOptions' #calendar>
     <ng-template #eventContent let-arg>
-        
-           <b> {{ arg.event.extendedProps.pnl}} </b>
-           
+        <div class='pnl'>
+           <b>{{arg.event.extendedProps.pnl}}</b>
+        </div>   
     </ng-template>
     </full-calendar>
 </div>

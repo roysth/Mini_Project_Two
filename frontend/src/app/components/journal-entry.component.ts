@@ -42,7 +42,7 @@ export class JournalEntryComponent implements OnInit {
 
   process() {
 
-    //Get the Contact from the form
+    //Get the Journal from the form
     const journal = this.form.value as Journal
 
     //Get the image from the form
@@ -61,7 +61,7 @@ export class JournalEntryComponent implements OnInit {
       console.log('>>>> ERROR: ', error)
     })
 
-    //this.router.navigate(['/journal/success'])
+    this.router.navigate(['/mainpage'])
   }
 
   clear() {
@@ -75,7 +75,7 @@ export class JournalEntryComponent implements OnInit {
       position: this.fb.control<string>('', Validators.required),
       tradeType: this.fb.control<string>('', Validators.required),
       entryPrice: this.fb.control<number>(0, Validators.required),
-      exitPrice: this.fb.control<number>(0),
+      exitPrice: this.fb.control<number>(0, Validators.required),
       entryDate: this.fb.control<Date>(new Date, Validators.required),
       exitDate: this.fb.control<Date>(new Date, Validators.required),
       pnl: this.fb.control<number>(0, Validators.required),

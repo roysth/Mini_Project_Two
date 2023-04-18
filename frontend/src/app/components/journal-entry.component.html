@@ -7,99 +7,88 @@
 </mat-toolbar>
 <br>
 <br>
+<br>
 
-<form [formGroup]="form" (ngSubmit)="process()">
+<div class="container">
+    <div>
+        <mat-card-header>
+            <mat-card-title>Enter Your Trades Here:</mat-card-title>
+        </mat-card-header>
+    </div>  
+    <br>
+    <form [formGroup]="form" (ngSubmit)="process()">
 
-    <table>
-      
-        <tr>
-            <td>Symbol:</td>
-            <td><input type="text" size="20" placeholder="Enter Symbol" formControlName="symbol"></td>
-        </tr>
+        <table>
+            <tr>
+                <td>Symbol:</td>
+                <td><input type="text" size="20" placeholder="Enter Symbol" formControlName="symbol"></td>
+            </tr>
+            <tr>
+                <td>Quantity:</td>
+                <td><input type="number" size="20" placeholder="Enter Quantity" formControlName="quantity"></td>
+            </tr>
+            <tr>
+                <td>Position:</td>
+                <td>
+                    <select formControlName="position">
+                        <option value="long">Long</option>
+                        <option value="short">Short</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Trade Type:</td>
+                <td>
+                    <select formControlName="tradeType">
+                        <option value="day">Day</option>
+                        <option value="swing">Swing</option>
+                        <option value="position">Position</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Entry Price:</td>
+                <td><input type="number" size="50" formControlName="entryPrice"></td>
+            </tr>
+            <tr>
+                <td>Entry Date:</td>
+                <td><input type="date" formControlName="entryDate"></td>
+            </tr>
+            <tr>
+                <td>Exit Price:</td>
+                <td><input type="number" size="50" formControlName="exitPrice"></td>
+            </tr>
+            <tr>
+                <td>Exit Date:</td>
+                <td><input type="date" formControlName="exitDate"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>*Exit date must be the today's date</td>
+            </tr>
+            <tr>
+                <td>PnL:</td>
+                <td><input type="number" formControlName="pnl"></td>
+            </tr>
+            <tr>
+                <td>Reason For Trade:</td>
+                <td>
+                    <textarea cols="40" rows="5" formControlName="comments"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>Image To Upload:</td>
+                <td><input type="file" accept="image/*" formControlName="image" #image></td>
+            </tr>
+            <br>
+            <tr>
+                <td></td>
+                <td><button mat-raised-button color="primary" type="submit">Submit</button></td>
+                <td><button mat-raised-button color="accent" type="button" (click)="clear()">Cancel</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
 
-        <tr>
-            <td>Quantity:</td>
-            <td><input type="number" size="20" placeholder="Enter Quantity" formControlName="quantity"></td>
-        </tr>
-
-        <tr>
-            <td>Position:</td>
-            <td>
-                <select formControlName="position">
-                    <option value="long">Long</option>
-                    <option value="short">Short</option>
-                </select>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Trade Type:</td>
-            <td>
-                <select formControlName="tradeType">
-                    <option value="day">Day</option>
-                    <option value="swing">Swing</option>
-                    <option value="position">Position</option>
-                </select>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Entry Price:</td>
-            <td><input type="number" size="50" formControlName="entryPrice"></td>
-        </tr>
-
-        <tr>
-            <td>Entry Date:</td>
-            <td><input type="date" formControlName="entryDate"></td>
-        </tr>
-
-        <tr>
-            <td>Exit Price:</td>
-            <td><input type="number" size="50" formControlName="exitPrice"></td>
-        </tr>
-
-        <tr>
-            <td>Exit Date:</td>
-            <td>*Exit date must be the today's date</td>
-            <td><input type="date" formControlName="exitDate"></td>
-        </tr>
-
-        <tr>
-            <td>PnL:</td>
-            <td><input type="number" formControlName="pnl"></td>
-        </tr>
-
-        <tr>
-            <td>Reason For Trade:</td>
-            <td>
-                <textarea cols="40" rows="5" formControlName="comments"></textarea>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Image To Upload:</td>
-            <!-- accept="image/*": only image files should be selectable -->
-            <!-- use #image instead of #file -->
-            <td><input type="file" accept="image/*" formControlName="image" #image></td>
-        </tr>
-
-        <tr>
-            <td></td>
-            <td><button type="submit">Submit</button></td>
-        </tr>
-
-        <tr>
-            <td></td>
-            <td><button type="button" (click)="clear()">Cancel</button></td>
-        </tr>
-
-
-
-
-
-    </table>
-
-
-</form>
 
 

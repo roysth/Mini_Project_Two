@@ -108,7 +108,7 @@ public class Utilities {
         journal.setPosition(json.getString("position"));
         journal.setTradeType(json.getString("tradeType"));
         journal.setEntryPrice(json.getJsonNumber("entryPrice").doubleValue());
-        journal.setExitPrice(json.getJsonNumber("entryPrice").doubleValue());
+        journal.setExitPrice(json.getJsonNumber("exitPrice").doubleValue());
         try {
             journal.setEntryDate(sdf.parse(json.getString("entryDate")));
         } catch (ParseException e) {
@@ -134,6 +134,7 @@ public class Utilities {
         Journal journal = new Journal();
         journal.setUuid(doc.getString("uuid"));
         journal.setSymbol(doc.getString("symbol"));
+        journal.setQuantity(doc.getInteger("quantity"));
         journal.setPosition(doc.getString("position"));
         journal.setTradeType(doc.getString("tradeType"));
         journal.setEntryPrice(doc.getDouble("entryPrice"));
@@ -153,6 +154,7 @@ public class Utilities {
         JsonObjectBuilder ob = Json.createObjectBuilder();
         ob.add("uuid", journal.getUuid());
         ob.add("symbol", journal.getSymbol());
+        ob.add("quantity", journal.getQuantity());
         ob.add("position", journal.getPosition());
         ob.add("tradeType", journal.getTradeType());
         ob.add("entryPrice", journal.getEntryPrice());

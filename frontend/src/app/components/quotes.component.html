@@ -8,7 +8,26 @@
 <br>
 <br>
 
-<div>
+<mat-card>
+    <mat-card-title>Quotes for: {{quotes.symbol}}</mat-card-title>
+  
+    <mat-divider></mat-divider>
+  
+    <div class="quote-container">
+      <p>Last Price: {{"$" +quotes.lastPrice.toFixed(2)}}</p>
+      <p>Open Price: {{"$" +quotes.openPrice.toFixed(2)}}</p>
+      <p>Close Price: {{"$" +quotes.closePrice.toFixed(2)}}</p>
+      <p>High Price: {{"$" +quotes.highPrice.toFixed(2)}}</p>
+      <p>Low Price: {{"$" +quotes.lowPrice.toFixed(2)}}</p>
+      <p>Net Change: {{quotes.netChange < 0 ? "-$" + ((-1)*(quotes.netChange)).toFixed(2) : "$" + quotes.netChange.toFixed(2)}}</p>
+      <p>Total Volume: {{quotes.totalVolume.toLocaleString()}}</p>
+      <p>52 Week High: {{"$" +quotes.FiftyTwoWkHigh.toFixed(2)}}</p>
+      <p>52 Week Low: {{"$" +quotes.FiftyTwoWkLow.toFixed(2)}}</p>
+    </div>
+</mat-card>
+
+<!-- <div>
+       
 
     <h2>Quotes for: {{quotes.symbol}}</h2>
 
@@ -23,5 +42,5 @@
     <p> 52 Week Low: {{"$" +quotes.FiftyTwoWkLow.toFixed(2)}}</p>
 
 
-</div>
+</div> -->
 
