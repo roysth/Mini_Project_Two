@@ -1,15 +1,128 @@
 <mat-toolbar >
-    <span>My Trading Journal </span>
+    <span>My Trading Journal <mat-icon>library_books</mat-icon> </span>
     <span class="spacer"></span>
-    <button mat-button type="button" (click)="mainpage()">Home</button>
-    <button mat-button type="button" (click)="getQuotes()">Quotes</button>
-    <button mat-button type="button" (click)="contactus()">Contact Us</button>
-    <button mat-button type="button" (click)="logout()">Logout</button>
+    <button mat-button type="button" (click)="mainpage()"><mat-icon>home</mat-icon>Home</button>
+    <button mat-button type="button" (click)="getQuotes()"><mat-icon>timeline</mat-icon>Quotes</button>
+    <button mat-button type="button" (click)="contactus()"><mat-icon>contact_support</mat-icon>Contact Us</button>
+    <button mat-button type="button" (click)="logout()"><mat-icon>exit_to_app</mat-icon>Logout</button>
 </mat-toolbar>
 
+<mat-card>
+    <mat-card-title>    
+        Enter Your Trades Here:   
+    </mat-card-title> 
+
+    <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="process()">
+            <table>
+                <tr>    
+                    <td>    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="Symbol" formControlName="symbol">    
+                        </mat-form-field>    
+                    </td>    
+                </tr> 
+                <tr>    
+                    <td>    
+                        <span><b>Position</b></span><br>    
+                        <mat-radio-group placeholder="Position" formControlName="position">    
+                            <mat-radio-button value="1">Long</mat-radio-button>    
+                            <mat-radio-button value="2">Short</mat-radio-button>    
+                        </mat-radio-group>    
+                    </td>    
+                    <td><br>    
+                        <mat-form-field>    
+                            <mat-select placeholder="Trade Type" formControlName="tradeType">    
+                                <mat-option>-- Select Any --</mat-option>    
+                                <mat-option value="day">Day</mat-option>    
+                                <mat-option value="swing">Swing</mat-option>    
+                                <mat-option value="position">Position</mat-option>    
+                            </mat-select>    
+                        </mat-form-field>    
+                    </td>    
+                </tr>   
+                <tr>
+                    <td>    
+                        <span><b>Entry Price</b></span><br>    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="Entry Price" formControlName="entryPrice">    
+                        </mat-form-field>     
+                    </td> 
+                    <td>    
+                        <span><b>Exit Price</b></span><br>    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="Exit Price" formControlName="exitPrice">    
+                        </mat-form-field>     
+                    </td> 
+                </tr>
+                <tr>    
+                    <td colspan="2">
+                        <span><b>Entry Date</b></span><br>      
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput [matDatepicker]="picker" placeholder="Entry Date" formControlName="entryDate">    
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>    
+                            <mat-datepicker touchUi="true" #picker></mat-datepicker>    
+                        </mat-form-field>    
+                    </td>    
+                </tr>
+                <tr>    
+                    <td colspan="2">
+                        <span><b>Exit Date</b></span><br>
+                        <span><i>*Exit date must be the same as the calendar date</i></span><br>       
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput [matDatepicker]="picker" placeholder="Exit Date" formControlName="exitDate">    
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>    
+                            <mat-datepicker touchUi="true" #picker></mat-datepicker>    
+                        </mat-form-field>    
+                    </td>    
+                </tr>
+                <tr>
+                    <td>    
+                        <span><b>Quantity</b></span><br>    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="Quantity" formControlName="quantity">    
+                        </mat-form-field>     
+                    </td> 
+                    <td>    
+                        <span><b>PnL</b></span><br>    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="PNL" formControlName="pnl">    
+                        </mat-form-field>     
+                    </td> 
+                </tr>
+                <tr>    
+                    <td colspan="2">    
+                        <mat-form-field class="demo-full-width">    
+                            <textarea matInput placeholder="Reason For Trade" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="5" formControlName="comments"></textarea>    
+                        </mat-form-field>    
+                    </td>    
+                </tr>
+                <tr>
+                    <td><span><b>Image to Upload</b></span></td>
+                      
+                    <td><input type="file" accept="image/*" formControlName="image" #image></td>
+                </tr>
+
+                <br>
+                <tr>
+                    <td><button mat-raised-button color="primary" type="submit"><mat-icon>check_circle</mat-icon>Submit</button></td>
+                    <td><button mat-raised-button color="accent" type="button" (click)="clear()"><mat-icon>cancel</mat-icon>Cancel</button></td>
+                </tr>
+
+            </table>
+        </form>
+    </mat-card-content>    
+</mat-card>
+ 
+ 
 
 
-<div class="container">
+
+
+
+
+
+<!-- <div class="container">
     <div>
         <mat-card-header>
             <mat-card-title>Enter Your Trades Here:</mat-card-title>
@@ -83,12 +196,9 @@
             <br>
             <tr>
                 <td></td>
-                <td><button mat-raised-button color="primary" type="submit">Submit</button></td>
-                <td><button mat-raised-button color="accent" type="button" (click)="clear()">Cancel</button></td>
+                <td><button mat-raised-button color="primary" type="submit"><mat-icon>check_circle</mat-icon>Submit</button></td>
+                <td><button mat-raised-button color="accent" type="button" (click)="clear()"><mat-icon>cancel</mat-icon>Cancel</button></td>
             </tr>
         </table>
     </form>
-</div>
-
-
-
+</div> -->

@@ -5,9 +5,9 @@
     <button mat-button type="button" (click)="logout()">Back</button>
 </mat-toolbar> -->
 <mat-toolbar>
-    <span>My Trading Journal </span>
+    <span>My Trading Journal <mat-icon>library_books</mat-icon></span>
     <span class="spacer"></span>
-    <button mat-button type="button" (click)="logout()">Back</button>
+    <button mat-button type="button" (click)="logout()"><mat-icon>backspace</mat-icon>Back</button>
 </mat-toolbar>
 
 <div class="container">
@@ -28,10 +28,12 @@
       <input matInput type="password" formControlName="password">
     </mat-form-field>
   
-    <button mat-raised-button color="primary" type="submit">Register</button>
+    <button mat-raised-button color="primary" type="submit"><mat-icon>person_icon</mat-icon>Register</button>
   
   </form>
 </div>
+
+
 <!-- <form [formGroup]="form" (ngSubmit)="process()">
 
     <table>

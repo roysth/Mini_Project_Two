@@ -42,8 +42,11 @@ public class AuthenticationController {
         }
 
         String email = request.getEmail();
-        String subject = "Your account with My Trading Journal has been created!";
-        String body = "Thank you for registering with My Trading Journal. Your account has been successfully created.";
+        String subject = "Welcome to My Trading Journal!";
+        String body = "Hey there! \n \n Your registration with My Trading Journal is successful and your account has been created!\n\n"
+        + "Thank you for supporting My Trading Journal and we wish you all the very best in your trading journey! \n\n\n"
+        + "Cheers, \n"
+        + "My Trading Journal Team";
 
         emailService.sendEmail(email, subject, body);
 
