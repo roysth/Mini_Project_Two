@@ -46,6 +46,10 @@ export class QuotesComponent implements OnInit {
     this.router.navigate(['/mainpage'])
   }
 
+  contactus() {
+    this.router.navigate(['/contactus'])
+  }
+
 
 
 

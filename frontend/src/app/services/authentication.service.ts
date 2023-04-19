@@ -42,7 +42,7 @@ export class AuthenticationService {
       }).then(
         () => {
           this.router.navigate(['/mainpage'])
-          //this.snackBar.open(`Logged in as ${username}`, 'OK', {duration: 3000})
+          this.snackBar.open(`Logged in as ${email}`, 'OK', {duration: 3000})
         }).catch(error => {
           console.log('>>>> ERROR: ', error)
         })

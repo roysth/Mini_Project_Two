@@ -15,6 +15,7 @@ import jakarta.json.Json;
 import lombok.RequiredArgsConstructor;
 import vttp.backend.model.User;
 import vttp.backend.service.AuthenticationService;
+import vttp.backend.service.EmailService;
 import vttp.backend.service.UserService;
 
 @Controller
@@ -23,6 +24,8 @@ import vttp.backend.service.UserService;
 public class AuthenticationController {
 
 
+    private final EmailService emailService;
+    
     private final AuthenticationService authenticationService;
     
     private final UserService userService;
@@ -37,6 +40,13 @@ public class AuthenticationController {
             String message = request.getEmail() + " is already taken";
             return ResponseEntity.badRequest().body(Json.createObjectBuilder().add("message", message).build().toString());
         }
+
+        String email = request.getEmail();
+        String subject = "Your account with My Trading Journal has been created!";
+        String body = "Thank you for registering with My Trading Journal. Your account has been successfully created.";
+
+        emailService.sendEmail(email, subject, body);
+
         return ResponseEntity.ok(authenticationService.register(request));
     }
 

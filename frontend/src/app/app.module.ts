@@ -17,6 +17,7 @@ import { JournalEntryComponent } from './components/journal-entry.component';
 import { RegisterComponent } from './components/register.component';
 import { MaterialModule } from './material.module';
 import { UploadedEntriesComponent } from './components/uploaded-entries.component';
+import { ContactUsComponent } from './components/contact-us.component';
 
 const appRoutes: Routes = [
   {path:'', component: LoginComponent},
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
   {path:'mainpage', component: MainpageComponent},
   {path:'quotes', component: SearchQuotesComponent}, 
   {path:'quotes/:ticker', component: QuotesComponent},
+  {path:'contactus', component: ContactUsComponent},
   {path:'**', redirectTo: '/', pathMatch: 'full'}
 
 ]
@@ -38,6 +40,7 @@ const appRoutes: Routes = [
     LoginComponent,
     MainpageComponent,
     QuotesComponent,
+    ContactUsComponent,
     SearchQuotesComponent,
     JournalEntryComponent,
     RegisterComponent,

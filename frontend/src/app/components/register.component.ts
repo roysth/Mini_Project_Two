@@ -14,7 +14,8 @@ export class RegisterComponent implements OnInit {
 
   form! : FormGroup
 
-  constructor(private fb : FormBuilder, private router : Router, private authenticationService: AuthenticationService){}
+  constructor(private fb : FormBuilder, private router : Router, private authenticationService: AuthenticationService,
+    private snackBar : MatSnackBar){}
 
   ngOnInit(): void {
     this.form = this.createForm()
@@ -30,7 +31,7 @@ export class RegisterComponent implements OnInit {
     this.authenticationService.register(user).then(
       () => {
         this.router.navigate(['/mainpage'])
-        //this.snackBar.open(`Logged in as ${user.username}`, 'OK', {duration: 3000})
+        this.snackBar.open(`Logged in as ${user.email}`, 'OK', {duration: 3000})
       }
     ).catch(error => {
       console.log('>>>> ERROR: ', error)
@@ -52,12 +53,6 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['/'])
   }
 
-  getQuotes() {
-    this.router.navigate(['/quotes'])
-  }
 
-  mainpage() {
-    this.router.navigate(['/mainpage'])
-  }
 
 }

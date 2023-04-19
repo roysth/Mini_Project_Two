@@ -96,6 +96,10 @@ export class JournalEntryComponent implements OnInit {
     this.router.navigate(['/mainpage'])
   }
 
+  contactus() {
+    this.router.navigate(['/contactus'])
+  }
+
 
   
 

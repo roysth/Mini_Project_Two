@@ -3,6 +3,7 @@
     <span class="spacer"></span>
     <button mat-button type="button" (click)="mainpage()">Home</button>
     <button mat-button type="button" (click)="getQuotes()">Quotes</button>
+    <button mat-button type="button" (click)="contactus()">Contact Us</button>
     <button mat-button type="button" (click)="logout()">Logout</button>
 </mat-toolbar>
 <br>
@@ -36,9 +37,9 @@
          
             <p>Exit Price: {{"$" + j.exitPrice}}</p>
           
-            <p>Entry Date: {{j.entryDate}}</p>
+            <p>Entry Date: {{edited(j.entryDate)}}</p>
 
-            <p>Exit Date: {{j.exitDate}}</p>
+            <p>Exit Date: {{edited(j.exitDate)}}</p>
           
             <p>PnL: {{j.pnl < 0 ? "-$" + (j.pnl)*(-1) : "$" + j.pnl}}</p>
            
