@@ -56,12 +56,13 @@ export class JournalEntryComponent implements OnInit {
     this.stocksRepo.postJournal(journal, this.blob, this.day_id)
     .then(results => {
       console.log('>>> POSTED: ', results)
+      this.router.navigate(['/mainpage'])
     })
     .catch(error => {
       console.log('>>>> ERROR: ', error)
     })
 
-    this.router.navigate(['/mainpage'])
+    
   }
 
   clear() {

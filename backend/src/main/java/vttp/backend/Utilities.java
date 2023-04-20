@@ -89,6 +89,7 @@ public class Utilities {
         >>> JsonObject from client is: 
         {"journal":
             {"symbol":"BIDU",
+            "quantity": "5",
             "position":"short",
             "tradeType":"swing",
             "entryPrice":"153",
@@ -104,11 +105,11 @@ public class Utilities {
 
         journal.setUuid(json.getString("uuid"));
         journal.setSymbol(json.getString("symbol"));
-        journal.setQuantity(json.getInt("quantity"));
+        journal.setQuantity(Integer.parseInt(json.getString("quantity")));
         journal.setPosition(json.getString("position"));
         journal.setTradeType(json.getString("tradeType"));
-        journal.setEntryPrice(json.getJsonNumber("entryPrice").doubleValue());
-        journal.setExitPrice(json.getJsonNumber("exitPrice").doubleValue());
+        journal.setEntryPrice(Double.parseDouble(json.getString("entryPrice")));
+        journal.setExitPrice(Double.parseDouble(json.getString("exitPrice")));
         try {
             journal.setEntryDate(sdf.parse(json.getString("entryDate")));
         } catch (ParseException e) {
@@ -121,7 +122,7 @@ public class Utilities {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        journal.setPnl(json.getInt("pnl"));
+        journal.setPnl(Integer.parseInt(json.getString("pnl")));
         journal.setComments(json.getString("comments"));
         journal.setImageUrl(json.getString("imageUrl"));
 

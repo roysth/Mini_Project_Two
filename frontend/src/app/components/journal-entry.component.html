@@ -1,17 +1,17 @@
 <mat-toolbar >
     <span>My Trading Journal <mat-icon>library_books</mat-icon> </span>
     <span class="spacer"></span>
-    <button mat-button type="button" (click)="mainpage()"><mat-icon>home</mat-icon>Home</button>
-    <button mat-button type="button" (click)="getQuotes()"><mat-icon>timeline</mat-icon>Quotes</button>
-    <button mat-button type="button" (click)="contactus()"><mat-icon>contact_support</mat-icon>Contact Us</button>
-    <button mat-button type="button" (click)="logout()"><mat-icon>exit_to_app</mat-icon>Logout</button>
+    <button mat-button type="button" (click)="mainpage()">Home<mat-icon>home</mat-icon></button>
+    <button mat-button type="button" (click)="getQuotes()">Quotes<mat-icon>timeline</mat-icon></button>
+    <button mat-button type="button" (click)="contactus()">Contact Us<mat-icon>contact_support</mat-icon></button>
+    <button mat-button type="button" (click)="logout()">Logout<mat-icon>exit_to_app</mat-icon></button>
 </mat-toolbar>
 
 <mat-card>
     <mat-card-title>    
         Enter Your Trades Here:   
     </mat-card-title> 
-
+    <br>
     <mat-card-content>
         <form [formGroup]="form" (ngSubmit)="process()">
             <table>
@@ -105,8 +105,8 @@
 
                 <br>
                 <tr>
-                    <td><button mat-raised-button color="primary" type="submit"><mat-icon>check_circle</mat-icon>Submit</button></td>
-                    <td><button mat-raised-button color="accent" type="button" (click)="clear()"><mat-icon>cancel</mat-icon>Cancel</button></td>
+                    <td><button mat-raised-button color="primary" type="submit">Submit<mat-icon>check_circle</mat-icon></button></td>
+                    <td><button mat-raised-button color="accent" type="button" (click)="clear()">Cancel<mat-icon>cancel</mat-icon></button></td>
                 </tr>
 
             </table>
