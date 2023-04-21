@@ -1,10 +1,14 @@
 .mat-toolbar {
-    background-color: #FFD700;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 16px;
+   /* background-color: #FFD700; */
+   height: 64px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 0 16px;
+   background-color: #0C243C; 
+   color:#FFFFFF;
+   font-family: 'Helvetica', sans-serif  ;
+   font-size: 25px ;
 }
 
 .mat-toolbar span {
@@ -53,4 +57,25 @@ text-align: left;
 .quote-container p {
     flex-basis: 100%;
 }
+}
+
+
+.background-image {
+    background-image: url('../../assets/images/stocks.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    
+}
+
+.card {
+    max-width: 400px;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    backdrop-filter: blur(30px);
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
+    color:aliceblue;
 }

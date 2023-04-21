@@ -20,12 +20,16 @@
 
 /* CSS FOR TOOLBAR */
 .mat-toolbar {
-    background-color: #FFD700;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 16px;
+   /* background-color: #FFD700; */
+   height: 64px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 0 16px;
+   background-color: #0C243C; 
+   color:#FFFFFF;
+   font-family: 'Helvetica', sans-serif  ;
+   font-size: 25px ;
 }
 
 .mat-toolbar span {

@@ -3,12 +3,12 @@
         <span>My Trading Journal <mat-icon>library_books</mat-icon></span>
     </mat-toolbar-row>
 </mat-toolbar>
-
+<div class="background-image">
 <div class="container">
     <mat-card class="card">
       <div>
         <mat-card-header>
-            <mat-card-title>Login With Your Credentials:</mat-card-title>
+            <mat-card-title>Sign In</mat-card-title>
         </mat-card-header>
       </div>  
       <br>
@@ -28,15 +28,28 @@
           </div>
           
         </form>
+
+        <div class="register">
+          <p>Don't have an account yet?</p>
+        </div>
+        <div class="register-one">
+        <button mat-button color="accent" [routerLink]="['/register']">Register with us!</button>
+        </div>
+      
+        
+        
       </mat-card-content>
     </mat-card>
   
-    <div class="register">
-      <p>Don't have an account yet?</p>
-    </div>
-    <button mat-button color="accent" [routerLink]="['/register']">Register with us</button>
+   
 </div>
 
+
+</div>
+
+
+
+<!-- DRAFT -->
 
 <!-- <form [formGroup]="form" (ngSubmit)="login()">
 

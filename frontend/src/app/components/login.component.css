@@ -11,6 +11,10 @@
     width: 100%;
     padding: 1rem;
     box-sizing: border-box;
+    backdrop-filter: blur(30px);
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
+    color:aliceblue;
 }
   
 .register {
@@ -19,11 +23,48 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    font-size: 15px;
+}
+
+.register-one {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
 }
 
 .header {
-    background-color: #FFD700; 
+    background-color: #0C243C; 
     font-weight: bold;
     text-align: center;
+    color:#FFFFFF;
+    font-family: 'Helvetica', sans-serif  ;
+    font-size: 25px ;
+}
+
+
+.background-image {
+    background-image: url('../../assets/images/stocks.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
     
 }
+
+/* https://img.freepik.com/free-vector/gradient-stock-market-concept_23-2149166910.jpg?w=900&t=st=1682087747~exp=1682088347~hmac=578dbffa5d6ad8276ca1de8a79611748537043931a264c2b36b40f03ba644f7d
+
+blur(14px);
+
+
+*/
+
+
+
+
+
+
+
+
