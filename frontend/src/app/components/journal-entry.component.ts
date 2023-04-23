@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Journal } from '../stocks.model';
 import { StocksRepository } from '../stocks.repository';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-journal-entry',
@@ -22,7 +23,7 @@ export class JournalEntryComponent implements OnInit {
 	image!: ElementRef
 
   constructor(private fb: FormBuilder, private router: Router, private stocksRepo: StocksRepository, 
-    private activatedRoute: ActivatedRoute) {}
+    private activatedRoute: ActivatedRoute, private snackBar : MatSnackBar) {}
 
   ngOnInit(): void {
     this.form = this.createForm();
@@ -57,6 +58,7 @@ export class JournalEntryComponent implements OnInit {
     .then(results => {
       console.log('>>> POSTED: ', results)
       this.router.navigate(['/mainpage'])
+      this.snackBar.open(`Entry added succcessfully!`, 'OK',{duration : 2000})
     })
     .catch(error => {
       console.log('>>>> ERROR: ', error)

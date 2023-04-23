@@ -26,7 +26,11 @@ public class JWTSecurityConfig {
             .csrf()
             .disable()
             .authorizeHttpRequests()
-            .requestMatchers("/api/auth/**") //For white listing
+            .requestMatchers("/api/auth/**", "/", "/index.html", "/favicon.ico", "/manifest.json", "/images/**", "/assets/**",
+            "/3rdpartylicenses.txt", "main.68fa987b7311eede.js", "polyfills.794d7387aea30963.js", "runtime.0ff8b5c7db2b67dc.js",
+            "styles.c3006ee056c356fb.css", "layers.ef6db8722c2c3f9a.png", "layers-2x.9859cd1231006a4a.png",
+            "marker-icon.d577052aa271e13f.png", "stocks.abdf9cf2d1e461b4.png"
+            ) //For white listing
             .permitAll()
             .anyRequest()
             .authenticated()

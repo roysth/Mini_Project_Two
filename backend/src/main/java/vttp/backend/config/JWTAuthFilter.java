@@ -27,12 +27,14 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(
+
         //Intercepts the HTTP connection
             @NonNull HttpServletRequest request, 
             @NonNull HttpServletResponse response, 
             @NonNull FilterChain filterChain
             ) throws ServletException, IOException {
 
+                System.out.println(request.getRequestURL());
         
         //JWT is in the HTTP Header. This is to extract the authentication
         final String authHeader = request.getHeader("Authorization");

@@ -6,10 +6,10 @@
     <button mat-button type="button" (click)="contactus()">Contact Us<mat-icon>contact_support</mat-icon></button>
     <button mat-button type="button" (click)="logout()">Logout<mat-icon>exit_to_app</mat-icon></button>
 </mat-toolbar>
-<br>
-<br>
+
 
 <div class="background-image">
+    <div class="container">
 <mat-card class="card">
     <mat-card-title>Quotes for: {{quotes.symbol}}</mat-card-title>
   
@@ -27,6 +27,7 @@
       <p>52 Week Low: {{"$" +quotes.FiftyTwoWkLow.toFixed(2)}}</p>
     </div>
 </mat-card>
+</div>
 </div>
 <!-- <div>
        

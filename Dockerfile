@@ -28,10 +28,10 @@ WORKDIR /app
 COPY backend/mvnw .
 COPY backend/mvnw.cmd .
 COPY backend/pom.xml .
-COPY backend/src src
+COPY backend/src ./src
 
 #Copy compiled angular app to static directory
-COPY --from=angularBuilder app/dist/client server/src/main/resources/static
+COPY --from=angularBuilder /app/dist/frontend ./src/main/resources/static
 
 RUN mvn package -Dmaven.test.skip=true
 
@@ -41,14 +41,12 @@ FROM eclipse-temurin:19-jre
 
 WORKDIR /app
 
-COPY --from=springBoot app/target/server-0.0.1-SNAPSHOT.jar server.jar
+COPY --from=springBoot app/target/backend-0.0.1-SNAPSHOT.jar backend.jar
 
 ENV PORT=8080
 
 # what port the program is listening to
 EXPOSE ${PORT}
 
-ENTRYPOINT java -Dserver.port=${PORT} -jar server.jar
+ENTRYPOINT java -Dbackend.port=${PORT} -jar backend.jar
 
-# docker build -t elkayjae/foodjournal:v0 .
-# docker run -d -p  8080:8080 elkayjae/foodjournal:v0

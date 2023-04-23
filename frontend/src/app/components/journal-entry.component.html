@@ -7,6 +7,7 @@
     <button mat-button type="button" (click)="logout()">Logout<mat-icon>exit_to_app</mat-icon></button>
 </mat-toolbar>
 
+
 <mat-card>
     <mat-card-title>    
         Enter Your Trades Here:   
@@ -59,9 +60,9 @@
                     <td colspan="2">
                         <span><b>Entry Date</b></span><br>      
                         <mat-form-field class="demo-full-width">    
-                            <input matInput [matDatepicker]="picker" placeholder="Entry Date" formControlName="entryDate">    
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>    
-                            <mat-datepicker touchUi="true" #picker></mat-datepicker>    
+                            <input matInput input type="date" placeholder="Entry Date" formControlName="entryDate">    
+                            <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>    
+                            <mat-datepicker touchUi="true" #picker></mat-datepicker>     -->
                         </mat-form-field>    
                     </td>    
                 </tr>
@@ -70,9 +71,9 @@
                         <span><b>Exit Date</b></span><br>
                         <span><i>*Exit date must be the same as the calendar date</i></span><br>       
                         <mat-form-field class="demo-full-width">    
-                            <input matInput [matDatepicker]="picker" placeholder="Exit Date" formControlName="exitDate">    
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>    
-                            <mat-datepicker touchUi="true" #picker></mat-datepicker>    
+                            <input matInput input type="date" placeholder="Exit Date" formControlName="exitDate">    
+                            <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>    
+                            <mat-datepicker touchUi="true" #picker></mat-datepicker>     -->
                         </mat-form-field>    
                     </td>    
                 </tr>
@@ -123,6 +124,22 @@
 
 
 <!-- <div class="container">
+
+
+         <tr>    
+                    <td colspan="2">
+                        <span><b>Exit Date</b></span><br>
+                        <span><i>*Exit date must be the same as the calendar date</i></span><br>       
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput [matDatepicker]="picker" placeholder="Exit Date" formControlName="exitDate">    
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>    
+                            <mat-datepicker touchUi="true" #picker></mat-datepicker>    
+                        </mat-form-field>    
+                    </td>    
+                </tr>
+
+
+
     <div>
         <mat-card-header>
             <mat-card-title>Enter Your Trades Here:</mat-card-title>
