@@ -4,13 +4,7 @@ FROM node:19 AS angularBuilder
 WORKDIR /app
 
 #Copy necessary files
-COPY frontend/angular.json .
-COPY frontend/package.json .
-COPY frontend/package-lock.json .
-COPY frontend/tsconfig.app.json .
-COPY frontend/tsconfig.json .
-COPY frontend/tsconfig.spec.json .
-COPY frontend/src ./src
+COPY frontend .
 
 #Install Angular
 RUN npm i -g @angular/cli
