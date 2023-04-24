@@ -31,10 +31,10 @@ public class AppConfig {
     //S3:
     @Value("${spaces.access.key}")
     public String spacesAccessKey; 
-    //DO0068DQ8X4N4EEJGH8H
+    
     @Value("${spaces.secret.key}")
     public String spacesSecretKey;
-    //fFKAdGIE3OJWOMAib2kgz/MG4PYfRCfODJl/fegb7b4
+    
 
     //S3
     @Bean
